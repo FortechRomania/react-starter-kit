@@ -7,28 +7,30 @@ module.exports = {
     devtool: debug ? "inline-sourcemap" : false,
     entry: "./js/App.js",
     module: {
-        preLoaders: [
+        rules: [
             {
                 test: /\.jsx?$/,
+                enforce: "pre",
                 exclude: /(node_modules|bower_components)/,
-                loader: "eslint",
+                use: [
+                    {
+                        loader: "eslint-loader",
+                        options: {
+                            failOnWarning: false,
+                            failOnError: false,
+                        },
+                    },
+                ],
             },
-        ],
-        loaders: [
             {
                 test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
                 loader: "babel-loader",
                 query: {
                     presets: [ "react", "es2015", "stage-0" ],
-                    plugins: [ "react-html-attrs", "transform-decorators-legacy", "transform-class-properties" ],
                 },
             },
         ],
-    },
-    eslint: {
-        failOnWarning: false,
-        failOnError: true,
     },
     output: {
         path: `${ __dirname }/src/`,
