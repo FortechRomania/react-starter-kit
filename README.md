@@ -12,9 +12,9 @@ To get started you can simply clone the repository and install the dependencies:
 
 
 ### Clone the repository
-Clone the node-seed repository using [git]:
+Clone the repo repository using [git]:
 ```
-git clone "path from git"
+git clone https://github.com/FortechRomania/react-starter-kit
 ```
 
 
