@@ -11,8 +11,6 @@ export default class Layout extends React.Component {
     render() {
         return (
             <div>
-                <p>This is a test para</p>
-                <p>Another testt</p>
                 <h1>{ this.state.title }</h1>
             </div>
         );
