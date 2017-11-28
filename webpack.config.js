@@ -1,6 +1,7 @@
-const debug = process.env.NODE_ENV !== "production";
+const dev = process.env.NODE_ENV !== "production";
 const webpack = require( "webpack" );
 const path = require( "path" );
+const { BundleAnalyzerPlugin } = require( "webpack-bundle-analyzer" );
 
 const plugins = [
     new webpack.optimize.CommonsChunkPlugin( {
@@ -10,19 +11,33 @@ const plugins = [
     } ),
 ];
 
-if ( !debug ) {
+if ( !dev ) {
     plugins.push(
-        new webpack.optimize.DedupePlugin(),
         new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.optimize.UglifyJsPlugin( { mangle: false, sourcemap: false } ) );
+        new webpack.DefinePlugin( {
+            "process.env.NODE_ENV": JSON.stringify( "production" ),
+        } ),
+        new webpack.optimize.UglifyJsPlugin( { mangle: false, sourceMap: true } ),
+        new BundleAnalyzerPlugin( {
+            analyzerMode: "static",
+            reportFilename: "webpack-report.html",
+            openAnalyzer: false,
+        } ),
+    );
 }
 
 module.exports = {
     context: path.join( __dirname, "src" ),
-    devtool: debug ? "inline-sourcemap" : false,
+    devtool: dev ? "none" : "source-map",
     entry: {
         app: "./js/App.js",
         lib: [ "react", "react-dom" ],
+    },
+    resolve: {
+        modules: [
+            path.resolve( "./src" ),
+            "node_modules",
+        ],
     },
     module: {
         rules: [
@@ -44,9 +59,6 @@ module.exports = {
                 test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
                 loader: "babel-loader",
-                /* query: {
-                    presets: [ "react", "es2015", "stage-0" ],
-                },*/
             },
         ],
     },

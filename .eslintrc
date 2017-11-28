@@ -1,3 +1,7 @@
 {
-    "extends": "fortech"
+    "extends": "fortech-react",
+    "env": {
+        "browser": true,
+        "jest": true
+    }
 }
