@@ -3,16 +3,12 @@ This project is an application setup for a typical [React](https://reactjs.org/)
 # Introduction
 The project is configured using [**Webpack**](https://webpack.js.org/) and [**Babel**](https://babeljs.io/) and it also has a test configuration, running tests using [**Jest**](https://facebook.github.io/jest/) with [**enzyme**](https://github.com/airbnb/enzyme).
 
-It follows the `eslint-config-fortech-react` (https://github.com/FortechRomania/eslint-config-fortech-react) ESLint config standard for modern JavaScript and React.
+It follows the [`eslint-config-fortech-react`](https://github.com/FortechRomania/eslint-config-fortech-react) ESLint config standard for modern JavaScript and React.
+
+The complete tools/modules used in this project are listed in **_package.json_**.
 
 ## Getting Started
 To get started you can simply clone the repository and install the dependencies:
-
-### Prerequisites
-You need git to clone the node-seed repository. You can get git from
-[http://git-scm.com/](http://git-scm.com/).
-
-A number of node.js tools is necessary to initialize and test node-seed. You must have node.js and its package manager (npm) installed. You can get them from  [http://nodejs.org/](http://nodejs.org/). The tools/modules used in this project are listed in package.json.
 
 
 ### Clone the repository
