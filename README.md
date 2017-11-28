@@ -1,6 +1,55 @@
-## Instructions to run
-1. *NPM install*
-2. *NPM run dev*
-3. Navigate to localhost:8080
+This project is an application setup for a typical [React](https://reactjs.org/) web app.
+
+# Introduction
+The project is configured using [**Webpack**](https://webpack.js.org/) and [**Babel**](https://babeljs.io/) and it also has a test configuration, running tests using [**Jest**](https://facebook.github.io/jest/) with [**enzyme**](https://github.com/airbnb/enzyme).
+
+It follows the `eslint-config-fortech-react` (https://github.com/FortechRomania/eslint-config-fortech-react) ESLint config standard for modern JavaScript and React.
+
+## Getting Started
+To get started you can simply clone the repository and install the dependencies:
+
+### Prerequisites
+You need git to clone the node-seed repository. You can get git from
+[http://git-scm.com/](http://git-scm.com/).
+
+A number of node.js tools is necessary to initialize and test node-seed. You must have node.js and its package manager (npm) installed. You can get them from  [http://nodejs.org/](http://nodejs.org/). The tools/modules used in this project are listed in package.json.
 
 
+### Clone the repository
+Clone the node-seed repository using [git]:
+```
+git clone "path from git"
+```
+
+
+### Install project dependencies
+```
+npm install
+```
+
+
+### Run the server
+```
+npm run dev
+```
+
+
+> The application is running now, so open a browser and navigate to **_localhost:8080_**
+
+You should see a message displayed on the screen, letting you know that it works.
+
+
+
+### Running tests
+Alternatively, if you want to run tests with jest, just write this command in the terminal:
+
+```
+npm run test
+```
+
+
+### Project Structure
+The project has three main folders:
+- **_src_** - containing the main folders and files (js, css etc.)
+- **_tests_** - contains the test files
+- **_test-config_** - contains the setup needed for running tests with enzyme
