@@ -7,7 +7,7 @@ const plugins = [
     new webpack.optimize.CommonsChunkPlugin( {
         name: "lib",
         minChunks: Infinity,
-        filename: "[name].bundle.js",
+        filename: "js/[name].bundle.js",
     } ),
 ];
 
@@ -43,20 +43,6 @@ module.exports = {
         rules: [
             {
                 test: /\.jsx?$/,
-                enforce: "pre",
-                exclude: /(node_modules|bower_components)/,
-                use: [
-                    {
-                        loader: "eslint-loader",
-                        options: {
-                            failOnWarning: false,
-                            failOnError: true,
-                        },
-                    },
-                ],
-            },
-            {
-                test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
                 loader: "babel-loader",
             },
@@ -64,7 +50,7 @@ module.exports = {
     },
     output: {
         path: path.resolve( __dirname, "dist" ),
-        filename: "[name].bundle.js",
+        filename: "js/[name].bundle.js",
     },
     plugins,
 };
