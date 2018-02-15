@@ -2,6 +2,7 @@ const dev = process.env.NODE_ENV !== "production";
 const webpack = require( "webpack" );
 const path = require( "path" );
 const { BundleAnalyzerPlugin } = require( "webpack-bundle-analyzer" );
+const FriendlyErrorsWebpackPlugin = require( "friendly-errors-webpack-plugin" );
 
 const plugins = [
     new webpack.optimize.CommonsChunkPlugin( {
@@ -9,6 +10,7 @@ const plugins = [
         minChunks: Infinity,
         filename: "js/[name].bundle.js",
     } ),
+    new FriendlyErrorsWebpackPlugin(),
 ];
 
 if ( !dev ) {
