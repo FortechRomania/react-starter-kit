@@ -2,13 +2,15 @@ const dev = process.env.NODE_ENV !== "production";
 const webpack = require( "webpack" );
 const path = require( "path" );
 const { BundleAnalyzerPlugin } = require( "webpack-bundle-analyzer" );
+const FriendlyErrorsWebpackPlugin = require( "friendly-errors-webpack-plugin" );
 
 const plugins = [
     new webpack.optimize.CommonsChunkPlugin( {
         name: "lib",
         minChunks: Infinity,
-        filename: "[name].bundle.js",
+        filename: "js/[name].bundle.js",
     } ),
+    new FriendlyErrorsWebpackPlugin(),
 ];
 
 if ( !dev ) {
@@ -43,20 +45,6 @@ module.exports = {
         rules: [
             {
                 test: /\.jsx?$/,
-                enforce: "pre",
-                exclude: /(node_modules|bower_components)/,
-                use: [
-                    {
-                        loader: "eslint-loader",
-                        options: {
-                            failOnWarning: false,
-                            failOnError: true,
-                        },
-                    },
-                ],
-            },
-            {
-                test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
                 loader: "babel-loader",
             },
@@ -64,7 +52,7 @@ module.exports = {
     },
     output: {
         path: path.resolve( __dirname, "dist" ),
-        filename: "[name].bundle.js",
+        filename: "js/[name].bundle.js",
     },
     plugins,
 };

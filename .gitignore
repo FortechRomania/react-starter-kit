@@ -1,3 +1,4 @@
 # Dependency directories
 node_modules/
-dist
+dist/js
+dist/webpack-report.html
