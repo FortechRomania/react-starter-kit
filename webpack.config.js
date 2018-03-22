@@ -5,21 +5,12 @@ const { BundleAnalyzerPlugin } = require( "webpack-bundle-analyzer" );
 const FriendlyErrorsWebpackPlugin = require( "friendly-errors-webpack-plugin" );
 
 const plugins = [
-    new webpack.optimize.CommonsChunkPlugin( {
-        name: "lib",
-        minChunks: Infinity,
-        filename: "js/[name].bundle.js",
-    } ),
     new FriendlyErrorsWebpackPlugin(),
 ];
 
 if ( !dev ) {
     plugins.push(
         new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.DefinePlugin( {
-            "process.env.NODE_ENV": JSON.stringify( "production" ),
-        } ),
-        new webpack.optimize.UglifyJsPlugin( { mangle: false, sourceMap: true } ),
         new BundleAnalyzerPlugin( {
             analyzerMode: "static",
             reportFilename: "webpack-report.html",
@@ -29,6 +20,7 @@ if ( !dev ) {
 }
 
 module.exports = {
+    mode: dev ? "development" : "production",
     context: path.join( __dirname, "src" ),
     devtool: dev ? "none" : "source-map",
     entry: {
@@ -53,6 +45,18 @@ module.exports = {
     output: {
         path: path.resolve( __dirname, "dist" ),
         filename: "js/[name].bundle.js",
+    },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    chunks: "initial",
+                    minChunks: Infinity,
+                    name: "lib",
+                    enforce: true,
+                },
+            },
+        },
     },
     plugins,
 };
